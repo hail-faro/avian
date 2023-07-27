@@ -1,0 +1,20 @@
+[package]
+author = "hail.alfa"
+edition = "2021"
+name = "avian"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[[bin]]
+name = "avian"
+path = "src/main.rs"
+release = "auk"

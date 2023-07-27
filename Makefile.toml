@@ -1,0 +1,13 @@
+[tasks.compile]
+args = ["build", "--release", "--target=build-targets/${@}.json", "-Zbuild-std"]
+command = "cargo"
+
+[tasks.post-compile]
+args = ["--binary-architecture=aarch64", "-I", "elf64-little", "-O", "binary", "--strip-all", "target/${@}/release/avian", "kernel8.img"]
+command = "rust-objcopy"
+dependencies = ["compile"]
+
+[tasks.kernel]
+run_task = [
+  {name = ["compile", "post-compile"], args = "${@}"},
+]
